@@ -1,0 +1,10 @@
+---
+- name: Start virtual machine related to hadoop
+  command: "virsh start {{ item }}"
+  with_items:
+      - centos_slave1
+      - centos_slave2
+      - centos_slave3
+
+- name: sleep for 20 seconds and continue with play
+  pause: seconds=20

@@ -1,0 +1,3 @@
+---
+- include: startHadoop.yml
+- include: startZookeeper.yml

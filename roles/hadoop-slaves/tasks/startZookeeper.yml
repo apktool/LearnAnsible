@@ -1,0 +1,6 @@
+---
+- name: Start hadoop-slaves' ZooKeeper
+  command: /home/hadoop/App/zookeeper-3.4.9/bin/zkServer.sh start
+  with_items:
+      - start-dfs.sh
+      - start-yarn.sh
