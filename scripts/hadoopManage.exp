@@ -8,7 +8,13 @@ if {[ regexp -nocase "$args" "start" ]} {
 	set playbook "stopHadoop"
 }
 
+spawn scp playbook/${playbook}.yml .
+interact
+
 spawn ansible-playbook -i hosts ${playbook}.yml --ask-pass
 expect "password:"
 send "root\r"
+interact
+
+spawn rm ${playbook}.yml
 interact

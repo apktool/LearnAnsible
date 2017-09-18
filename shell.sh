@@ -10,6 +10,6 @@ else
 fi
 
 if [ $? -eq 0 ]; then
-	expect -f scripts/hadoopManage.sh ${args}
+	expect -f scripts/hadoopManage.exp ${args}
 fi
 
