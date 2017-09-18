@@ -1,2 +1,6 @@
 ---
 - include: startZookeeper.yml
+  when: "'start' == '{{ motivation }}'"
+
+- include: stopZookeeper.yml
+  when: "'stop' == '{{ motivation }}'"

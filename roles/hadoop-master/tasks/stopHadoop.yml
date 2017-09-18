@@ -1,0 +1,6 @@
+---
+- name: Stop Hadoop Master
+  command: "/home/hadoop/App/hadoop-2.8.1/sbin/{{ item }}"
+  with_items:
+      - stop-dfs.sh
+      - stop-yarn.sh
