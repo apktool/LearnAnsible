@@ -1,0 +1,7 @@
+---
+- name: Start virtual machine related to hadoop
+  command: "virsh shutdown {{ item }}"
+  with_items:
+      - centos_slave1
+      - centos_slave2
+      - centos_slave3

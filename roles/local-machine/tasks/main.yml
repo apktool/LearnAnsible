@@ -1,2 +1,6 @@
 ---
 - include: startVM.yml
+  when: "'start' == '{{ motivation }}'"
+
+- include: stopVM.yml
+  when: "'stop' == '{{ motivation }}'"
