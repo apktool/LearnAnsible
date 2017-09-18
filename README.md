@@ -3,5 +3,6 @@
 Start Hadoop service via ansible playbook
 
 ```
-./shell
+Usage:
+	./shell.sh <start|stop>
 ```
