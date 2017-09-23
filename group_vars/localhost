@@ -1,0 +1,8 @@
+---
+
+ISOName: CentOS-7-x86_64-Minimal-1708.iso
+ISOPath: /tmp
+
+VMName1: centos-slave-1
+VMName2: centos-slave-2
+VMName3: centos-slave-3
