@@ -4,3 +4,6 @@
 
 - include: stopVM.yml
   when: "'stop' == '{{ motivation }}'"
+
+- include: installCentOS.yml
+  when: "'install' == '{{ motivation }}'"

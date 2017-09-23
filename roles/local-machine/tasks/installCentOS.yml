@@ -1,0 +1,3 @@
+---
+- name: Start installation
+  command: "echo 'Hello world'"
