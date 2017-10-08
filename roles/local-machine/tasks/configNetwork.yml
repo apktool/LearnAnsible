@@ -1,0 +1,10 @@
+---
+- name: Prepare for network xml before vary default network
+  template: src=net.xml dest=/tmp/{{ item.name }}_net.xml
+  with_items:
+      - "{{ VMGuest }}"
+
+- name: Config network to achieve pseudo static ip by binding both mac and ip
+  command: virsh net-update default add-last ip-dhcp-host /tmp/{{ item.name }}_net.xml --live --config
+  with_items:
+      - "{{ VMGuest }}"

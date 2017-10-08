@@ -6,7 +6,10 @@ ISOPath: /tmp
 VMGuest:
   - name: centos-slave-1
     mac: 52:54:00:63:21:0a
+    ip: 192.168.122.21
   - name: centos-slave-2
     mac: 52:54:00:63:21:0b
+    ip: 192.168.122.22
   - name: centos-slave-3
     mac: 52:54:00:63:21:0c
+    ip: 192.168.122.23

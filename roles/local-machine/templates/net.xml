@@ -1,0 +1,1 @@
+<host mac='{{ item.mac }}' name='{{ item.name }}' ip='{{ item.ip }}'/>
