@@ -6,3 +6,6 @@ ISOPath: /tmp
 VMName1: centos-slave-1
 VMName2: centos-slave-2
 VMName3: centos-slave-3
+
+VMName: centos-slave
+MACAddr: 52:54:00:63:21:0a

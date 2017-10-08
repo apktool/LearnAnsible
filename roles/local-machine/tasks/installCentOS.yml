@@ -1,9 +1,10 @@
 ---
-- name: Create qemu-img
+- name: Build Simple HTTP Server
   shell: |
-      qemu-img create -f qcow2 /var/lib/libvirt/images/{{ VMName1 }}.qcow2 10G
-      qemu-img create -f qcow2 /var/lib/libvirt/images/{{ VMName2 }}.qcow2 10G
-      qemu-img create -f qcow2 /var/lib/libvirt/images/{{ VMName3 }}.qcow2 10G
+      cd /tmp
+      nohup python -m SimpleHTTPServer > simplehttpserver.out 2>&1 &
+  async: 300
+  poll: 0
 
 - name: Make preparation for installation
   shell: |
@@ -14,37 +15,19 @@
       cp /mnt/images/pxeboot/initrd.img /var/lib/libvirt/boot -f
       umount /mnt
 
-- name: Build Simple HTTP Server
-  shell: |
-      cd /tmp
-      nohup python -m SimpleHTTPServer > simplehttpserver.out 2>&1 &
-  async: 300
-  poll: 0
+- name: Prepare to templates
+  template: src={{item.src}} dest={{item.dest}}
+  with_items:
+      - { src: 'install.xml', dest: '/tmp/{{ VMName }}_install.xml' }
+      - { src: 'boot.xml', dest: '/tmp/{{ VMName }}_boot.xml' }
 
-- name: Start to install centos-01
+- name: Start to install centos
   shell: |
-      virsh create /tmp/install_01.xml
+      qemu-img create -f qcow2 /var/lib/libvirt/images/{{ VMName }}.qcow2 10G
+      virsh create /tmp/{{ VMName }}_install.xml
       sleep 500
-      virsh define /tmp/boot_01.xml
-      virsh start {{ VMName1 }}
-  async: 500
-  poll: 0
-
-- name: Start to install centos-02
-  shell: |
-      virsh create /tmp/install_02.xml
-      sleep 500
-      virsh define /tmp/boot_02.xml
-      virsh start {{ VMName2 }}
-  async: 500
-  poll: 0
-
-- name: Start to install centos-03
-  shell: |
-      virsh create /tmp/install_03.xml
-      sleep 500
-      virsh define /tmp/boot_03.xml
-      virsh start {{ VMName3 }}
+      virsh define /tmp/{{ VMName }}_boot.xml
+      virsh start {{ VMName }}
   async: 500
   poll: 0
 
