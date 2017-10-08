@@ -3,13 +3,6 @@
 ISOName: CentOS-7-x86_64-Minimal-1708.iso
 ISOPath: /tmp
 
-VMName1: centos-slave-1
-VMName2: centos-slave-2
-VMName3: centos-slave-3
-
-VMName: centos-slave
-MACAddr: 52:54:00:63:21:0a
-
 VMGuest:
   - name: centos-slave-1
     mac: 52:54:00:63:21:0a
