@@ -1,2 +1,3 @@
 ---
 motivation: start
+ansible_path: /home/hadoop/Workspace/ansible

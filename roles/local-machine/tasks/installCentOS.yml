@@ -14,12 +14,21 @@
       cp /mnt/images/pxeboot/initrd.img /var/lib/libvirt/boot -f
       umount /mnt
 
+- name: Build Simple HTTP Server
+  shell: |
+      cd /tmp
+      nohup python -m SimpleHTTPServer > simplehttpserver.out 2>&1 &
+  async: 300
+  poll: 0
+
 - name: Start to install centos-01
   shell: |
       virsh create /tmp/install_01.xml
       sleep 500
       virsh define /tmp/boot_01.xml
       virsh start {{ VMName1 }}
+  async: 500
+  poll: 0
 
 - name: Start to install centos-02
   shell: |
@@ -27,6 +36,8 @@
       sleep 500
       virsh define /tmp/boot_02.xml
       virsh start {{ VMName2 }}
+  async: 500
+  poll: 0
 
 - name: Start to install centos-03
   shell: |
@@ -34,3 +45,8 @@
       sleep 500
       virsh define /tmp/boot_03.xml
       virsh start {{ VMName3 }}
+  async: 500
+  poll: 0
+
+- name: Waste time
+  command: sleep 500
