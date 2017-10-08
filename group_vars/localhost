@@ -9,3 +9,11 @@ VMName3: centos-slave-3
 
 VMName: centos-slave
 MACAddr: 52:54:00:63:21:0a
+
+VMGuest:
+  - name: centos-slave-1
+    mac: 52:54:00:63:21:0a
+  - name: centos-slave-2
+    mac: 52:54:00:63:21:0b
+  - name: centos-slave-3
+    mac: 52:54:00:63:21:0c

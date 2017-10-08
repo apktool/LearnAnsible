@@ -1,5 +1,5 @@
 <domain type="kvm">
-  <name>{{ VMName }}</name>
+  <name>{{ item.name }}</name>
   <memory>2097152</memory>
   <vcpu>2</vcpu>
   <os>
@@ -16,12 +16,12 @@
     <emulator>/usr/bin/qemu-kvm</emulator>
     <disk type="file" device="disk">
       <driver name="qemu" type="qcow2"/>
-	  <source file="/var/lib/libvirt/images/{{ VMName }}.qcow2"/>
+	  <source file="/var/lib/libvirt/images/{{ item.name }}.qcow2"/>
       <target dev="vda" bus="virtio"/>
     </disk>
     <interface type="network">
       <source network='default' bridge='virbr0'/>
-	  <mac address="{{ MACAddr }}"/>
+	  <mac address="{{ item.mac }}"/>
       <model type="virtio"/>
     </interface>
     <input type="tablet" bus="usb"/>

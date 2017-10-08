@@ -15,21 +15,27 @@
       cp /mnt/images/pxeboot/initrd.img /var/lib/libvirt/boot -f
       umount /mnt
 
-- name: Prepare to templates
-  template: src={{item.src}} dest={{item.dest}}
+- name: Prepare to install templates
+  template: src=install.xml dest=/tmp/{{ item.name }}_install.xml
   with_items:
-      - { src: 'install.xml', dest: '/tmp/{{ VMName }}_install.xml' }
-      - { src: 'boot.xml', dest: '/tmp/{{ VMName }}_boot.xml' }
+      - "{{ VMGuest }}"
+
+- name: Prepare to boot templates
+  template: src=boot.xml dest=/tmp/{{ item.name }}_boot.xml
+  with_items:
+      - "{{ VMGuest }}"
 
 - name: Start to install centos
   shell: |
-      qemu-img create -f qcow2 /var/lib/libvirt/images/{{ VMName }}.qcow2 10G
-      virsh create /tmp/{{ VMName }}_install.xml
-      sleep 500
-      virsh define /tmp/{{ VMName }}_boot.xml
-      virsh start {{ VMName }}
-  async: 500
+      qemu-img create -f qcow2 /var/lib/libvirt/images/{{ item.name }}.qcow2 10G
+      virsh create /tmp/{{ item.name }}_install.xml
+      sleep 600
+      virsh define /tmp/{{ item.name }}_boot.xml
+      virsh start {{ item.name }}
+  with_items:
+      - "{{ VMGuest }}"
+  async: 900
   poll: 0
 
 - name: Waste time
-  command: sleep 500
+  command: sleep 600
