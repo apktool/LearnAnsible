@@ -29,13 +29,24 @@
   shell: |
       qemu-img create -f qcow2 /var/lib/libvirt/images/{{ item.name }}.qcow2 10G
       virsh create /tmp/{{ item.name }}_install.xml
-      sleep 600
-      virsh define /tmp/{{ item.name }}_boot.xml
-      virsh start {{ item.name }}
   with_items:
       - "{{ VMGuest }}"
   async: 900
   poll: 0
 
-- name: Waste time
-  command: sleep 600
+- name: Get centos status while installing
+  command: virsh list --name
+  register: status
+  until: status.stdout.find("{{ item.name }}") == -1
+  with_items:
+     - "{{ VMGuest }}"
+  retries: 30
+  delay: 30
+
+- name: Boot centos installed
+  shell: |
+      sleep 10
+      virsh define /tmp/{{ item.name }}_boot.xml
+      virsh start {{ item.name }}
+  with_items:
+      - "{{ VMGuest }}"
