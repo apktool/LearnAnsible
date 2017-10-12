@@ -1,0 +1,4 @@
+---
+- name: Start Kafka Server
+  shell: |
+      /home/hadoop/App/kafka_2.12-0.11.0.0/bin/kafka-server-start.sh  -daemon /home/hadoop/App/kafka_2.12-0.11.0.0/config/server.properties 

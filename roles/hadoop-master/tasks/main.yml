@@ -5,8 +5,14 @@
 - include: startZookeeper.yml
   when: "'start' == '{{ motivation }}'"
 
-- include: stopHadoop.yml
+- include: startKafka.yml
+  when: "'start' == '{{ motivation }}'"
+
+- include: stopKafka.yml
   when: "'{{ motivation }}' == 'stop'"
 
 - include: stopZookeeper.yml
+  when: "'{{ motivation }}' == 'stop'"
+
+- include: stopHadoop.yml
   when: "'{{ motivation }}' == 'stop'"

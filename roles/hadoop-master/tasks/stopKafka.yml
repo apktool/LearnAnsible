@@ -1,0 +1,5 @@
+---
+- name: Stop Kafka Server
+  shell: |
+      /home/hadoop/App/kafka_2.12-0.11.0.0/bin/kafka-server-stop.sh
+      sleep 5
