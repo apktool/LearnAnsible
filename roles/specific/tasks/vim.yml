@@ -11,3 +11,8 @@
 
 - name: Install Plugin using vundle
   command: vim +PluginInstall +qall
+
+- name: Config YouCompleteMe
+  copy:
+    src: '.ycm_extra_conf.py'
+    dest: '/home/{{ username }}/.vim/bundle/YouCompleteMe'
