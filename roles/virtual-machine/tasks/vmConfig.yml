@@ -1,4 +1,0 @@
----
-- name: Stop slaves' firewalld service
-  systemd: name=firewalld state=stopped
-  tags: firewalld

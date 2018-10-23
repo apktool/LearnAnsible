@@ -1,7 +1,0 @@
----
-- name: LocalHost configuration
-  hosts: localhost
-  user: root
-
-  roles:
-      - local-machine
