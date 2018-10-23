@@ -1,0 +1,6 @@
+---
+
+- hosts: default
+  name: Deploy Common Software
+  roles:
+    - { role: 'roles/common' }

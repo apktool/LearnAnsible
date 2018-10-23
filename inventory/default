@@ -1,0 +1,8 @@
+[default]
+192.168.99.92
+
+[all:vars]
+ansible_connection=ssh
+ansible_user=root
+ansible_ssh_pass=root
+ansible_port=22
