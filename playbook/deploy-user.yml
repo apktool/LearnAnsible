@@ -1,0 +1,10 @@
+---
+
+- hosts: default
+  name: Deploy Specific Software
+  roles:
+    - { role: 'roles/specific' }
+  become: yes
+  become_method: su
+  become_user: '{{ username }}'
+  become_flags: '-s /bin/bash'

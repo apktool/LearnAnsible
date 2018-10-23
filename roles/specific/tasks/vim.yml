@@ -1,0 +1,13 @@
+---
+- name: 'Copy .vimrc to /home/{{ username }}'
+  copy:
+    src: '.vimrc'
+    dest: '/home/{{ username }}'
+
+- name: https://github.com/VundleVim/Vundle.vim
+  git:
+    repo: 'https://github.com/VundleVim/Vundle.vim.git'
+    dest: '/home/{{ username }}/.vim/bundle/Vundle.vim'
+
+- name: Install Plugin using vundle
+  command: vim +PluginInstall +qall

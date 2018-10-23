@@ -1,0 +1,26 @@
+---
+- name: https://github.com/robbyrussell/oh-my-zsh
+  shell: |
+    sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+
+- name: Change ZSH_THEME
+  replace:
+    path: '/home/{{ username }}/.zshrc'
+    regexp: ZSH_THEME=(.*?)$
+    replace: ZSH_THEME="agnoster"
+
+- name: Add plugins
+  lineinfile:
+    path: '/home/{{ username }}/.zshrc'
+    insertafter: '^plugins'
+    line: '  {{ item }}'
+  loop:
+    - zsh-syntax-highlighting
+    - zsh-dircolors-solarized
+    - zsh-autosuggestions
+    - zsh-completions
+    - last-working-dir
+    - urltools
+
+- name: Change default shell
+  command: chsh -s /bin/zsh

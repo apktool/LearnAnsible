@@ -1,0 +1,12 @@
+---
+
+# https://github.com/Mayccoll/Gogh
+
+- name: Download Dracula theme
+  get_url:
+    url: http://git.io/v3D8e
+    dest: /tmp/xt
+    mode: 0777
+
+- name: Change theme to dracula
+  shell: /tmp/xt

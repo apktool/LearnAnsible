@@ -1,0 +1,43 @@
+- name: Install basic rpm package
+  dnf:
+    name: '{{ item }}'
+    state: latest
+  loop:
+    - httpd
+    - git
+    - zsh
+    - vim
+    - tmux
+    - htop
+    - flameshot
+    - libvirt
+    - virt-manager
+    - libselinux-python
+    - readline-devel
+    - openssl-devel
+    - python-devel
+    - python3-devel
+    - autojump
+    - gcc-c++
+    - cmake
+    - make
+    - chromium
+    - python-pip
+    - python3-pip
+    - gnome-tweak-tool
+    - mycli
+    - arc-theme
+    - moka-icon-theme
+    - powerline-fonts
+    - maven
+    - wget
+
+- name: Install basic pip package
+  pip:
+    name: '{{ item }}'
+    state: latest
+    executable: /usr/local/bin/pip3
+  loop:
+    - requests
+    - shadowsocks
+    - genpac

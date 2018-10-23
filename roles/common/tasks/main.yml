@@ -1,4 +1,4 @@
 ---
+- include: preinstall.yml
 
-- debug:
-    msg: Hello world
+- include: config.yml

@@ -1,0 +1,18 @@
+---
+
+- name: Get SimpleHTTPServer path
+  command: python -c 'import SimpleHTTPServer as s; print(s.__file__.rsplit("/", 1)[0])'
+  register: sspath
+
+- name: 'Copy SimpleHTTPServerWithUpload.py to {{ sspath["stdout"] }}'
+  copy:
+    src: SimpleHTTPServerWithUpload.py
+    dest: '{{ sspath["stdout"] }}'
+
+- name: Generate proxy.pac
+  shell: genpac --format=pac --pac-proxy="SOCKS5 127.0.0.1:1080" > /etc/proxy.pac
+
+- name: Generate shadowsocks.json
+  template:
+    src: shadowsocks.json
+    dest: /etc/shadowsocks.json

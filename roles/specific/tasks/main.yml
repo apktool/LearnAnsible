@@ -1,0 +1,9 @@
+---
+
+- include: tmux.yml
+
+- include: zsh.yml
+
+- include: terminal.yml
+
+- include: vim.yml
