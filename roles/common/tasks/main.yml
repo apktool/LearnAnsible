@@ -2,3 +2,5 @@
 - include: preinstall.yml
 
 - include: config.yml
+
+- include: postinstall.yml
