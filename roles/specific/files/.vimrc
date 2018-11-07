@@ -59,6 +59,8 @@ endif
     Plugin 'Chiel92/vim-autoformat'
     Plugin 'vim-scripts/indentpython.vim'
     Plugin 'jiangmiao/auto-pairs'
+    Plugin 'godlygeek/tabular'
+    Plugin 'plasticboy/vim-markdown'
     call vundle#end()
     filetype plugin indent on
 "}}
